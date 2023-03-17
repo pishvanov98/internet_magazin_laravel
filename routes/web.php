@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
-
-
 Route::get('', 'HomeController@index');
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['role:admin'], 'prefix'=> 'admin'], function(){//prefix подставляет admin во всё что внутри группы в пути , namespace группа контрорреров в папке Admin middleware дал доступ роли админу
@@ -25,3 +22,5 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['role:admin'], 'prefix'=>
 
 });
 
+
+Auth::routes();
