@@ -83,5 +83,40 @@
             @yield('content')
         </main>
     </div>
+    <footer class="container">
+        <div class="wrapper_item">
+            <div class="item_top">
+                Покупателям
+            </div>
+            <ul>
+                <li><a href="#">Как выбрать товар</a></li>
+                <li><a href="#">Оплата и доставка</a></li>
+                <li><a href="#">Обратная связь</a></li>
+                <li><a href="#">Покупайте как юрлицо</a></li>
+                <li><a href="#">О сервисе</a></li>
+            </ul>
+        </div>
+        <div class="wrapper_item">
+            <div class="item_top">
+                Продавцам
+            </div>
+            <ul>
+                <li><a href="#">Личный кабинет продавца</a></li>
+                <li><a href="#">Продавайте на Маркете</a></li>
+                <li><a href="#">Документация для партнёров</a></li>
+                <li><a href="#">Покупайте как юрлицо</a></li>
+            </ul>
+        </div>
+        <div class="wrapper_item">
+            <div class="item_top">
+                Сотрудничество
+            </div>
+            <ul>
+                <li><a href="#">Новости компании</a></li>
+                <li><a href="#">Производителям</a></li>
+                <li><a href="#">Пункт выдачи заказов</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

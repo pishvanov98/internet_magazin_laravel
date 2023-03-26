@@ -8,6 +8,39 @@
 @import '~bootstrap/scss/bootstrap';
 body{
     background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e9e9e8;
+    padding-top: 10px;
+.item_top{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 0 16px;
+    color: #454545;
+}
+.wrapper_item ul {
+    padding-left: 0;
+    li{
+        list-style-type: none;
+        a{
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 16px;
+            line-height: 20px;
+            padding: 0 0 8px;
+            color: #666;
+            display: block;
+        }
+    }
+}
 }
 .navbar{
     .container{
@@ -19,9 +52,13 @@ body{
         }
     }
 }
+
 .wrapper_goods{
+    display: flex;
+    flex-wrap: wrap;
     .goods{
         width: 170px;
+        margin: 8px;
         .wishlist_icon{
             display: block;
             text-align: end;
@@ -36,8 +73,26 @@ body{
         }
         .title{
             font-size: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     }
 }
 
 
+@media (max-width: 990px) {
+   .wrapper_goods .goods{
+        margin: 2px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .wrapper_goods{
+        justify-content: center;
+        .goods{
+            margin: 10px !important;
+        }
+    }
+}
