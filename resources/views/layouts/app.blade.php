@@ -30,6 +30,15 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{asset('/img/NeYandex.png')}}">
                 </a>
+                <div class="wrapper_search_block_desktop">
+                    <span class="button_catalog">
+                        <span class="navbar-toggler-icon"></span>Каталог
+                    </span>
+                    <div class="wrapper_search">
+                    <input id="header-search" type="text">
+                    <span class="button_search">Найти</span>
+                    </div>
+                    </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,13 +55,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Войти</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Зарегистрироваться</a>
                                 </li>
                             @endif
                         @else
@@ -65,7 +74,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Выйти
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
