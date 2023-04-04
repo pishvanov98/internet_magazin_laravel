@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @push('js')
+        <script src="{{ asset('js/slick.min.js') }}" ></script>
+    @endpush
+
+
+    @push('css')
+    <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
+    @endpush
 <div class="container">
     <div class="block_slider">
         <div class="slider single-item">
