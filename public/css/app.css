@@ -10819,6 +10819,15 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+#app_admin .wrapper_button_prod {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+#app_admin .wrapper_button_prod button {
+  margin: 10px;
+}
+
 body {
   background-color: white;
   display: flex;

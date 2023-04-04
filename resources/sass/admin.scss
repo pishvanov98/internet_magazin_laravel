@@ -1,4 +1,11 @@
 #app_admin{
-
+.wrapper_button_prod{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    button{
+        margin: 10px;
+    }
+}
 
 }
