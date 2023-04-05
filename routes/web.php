@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['role:admin'], 'prefix'=>
     Route::get('', 'AdminController@index')->name('admin');
     Route::get('/product', 'ProductController@index')->name('admin.product');
     Route::get('/product/create', 'ProductController@create')->name('admin.product.create');
+    Route::post('/product', 'ProductController@store')->name('admin.product.store');
 
 });
 
