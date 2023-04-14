@@ -9,7 +9,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInputCategory" class="form-label">Категория</label>
-                <input type="name" name="сategory" class="form-control" id="exampleFormControlInputCategory" placeholder="">
+                <input type="name" name="category_name" class="form-control" id="exampleFormControlInputCategory" placeholder="">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInputArt" class="form-label">Артикул</label>
@@ -41,7 +41,7 @@
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Выберите картинку</label>
-                <input name="img" class="form-control" type="file" id="formFile">
+                <input name="image" class="form-control" type="file" id="formFile">
             </div>
             <div class="wrapper_save_prod">
                <input type="submit" class="btn btn-primary" value="Добавить">

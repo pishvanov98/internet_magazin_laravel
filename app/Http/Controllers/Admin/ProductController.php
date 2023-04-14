@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -20,22 +20,22 @@ class ProductController extends Controller
         var_dump($request->all());
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:posts|max:191',
-            'category_id' => 'required',
-            'articul' => 'required|string',
-            'brand' => 'required|string',
-            'quantity' => 'required|numeric',
-            'status' => 'required|numeric',
-            'price' => 'required|numeric',
-            'description' => 'required|string',
-            'image_id' => 'required',
+            'name' => 'required|max:191',
+            'category_name' => 'required',
+            'articul' => 'required',
+            'brand' => 'required',
+            'quantity' => 'required',
+            'status' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'image' => 'required',
         ]);
 
-//        if ($validator->fails()) {
-//            return redirect('post/create')
-//                ->withErrors($validator)
-//                ->withInput();
-//        }
+        if ($validator->fails()) {
+            return redirect('admin/product/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
 
         return '32';
