@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container mt-3">
-        <form action="{{ route('admin.product.store') }}" method="post">
+        <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInputName" class="form-label">Наименование товара</label>
@@ -13,7 +13,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInputArt" class="form-label">Артикул</label>
-                <input type="name" name="art" class="form-control" id="exampleFormControlInputArt" placeholder="">
+                <input type="name" name="articul" class="form-control" id="exampleFormControlInputArt" placeholder="">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInputBrand" class="form-label">Производитель</label>
