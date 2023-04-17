@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CategoryToProduct;
 use App\Models\Image;
+use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,13 +39,23 @@ class ProductController extends Controller
                 ->withInput();
         }else{
             $mass_request=$request->all();
-            var_dump($mass_request['category_name']);
-
             $category_id= $this->addCategory($mass_request['category_name']);
             $image_id= $this->addImage($request);
 
-var_dump($category_id);
-var_dump($image_id);
+$mass_product=[
+    'name' => $mass_request['name'],
+    'category_id' => $category_id,
+    'articul' => $mass_request['articul'],
+    'brand' => $mass_request['brand'],
+    'quantity' => (int)$mass_request['quantity'],
+    'status' => (int)$mass_request['status'],
+    'price' => (int)$mass_request['price'],
+    'description' => $mass_request['description'],
+    'image_id' => $image_id,
+];
+
+    $this->addProduct($mass_product);
+
         }
 
 
@@ -71,6 +82,19 @@ var_dump($image_id);
             $image_class->save();
 
             return $image_class->id;
+
+    }
+
+
+    private function addProduct($product){
+
+        var_dump($product);
+
+        $test =product::created($product);
+
+        dd($test);
+        var_dump($test);
+
 
     }
 

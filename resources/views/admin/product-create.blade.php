@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="container mt-3">
+    <div class="container mt-3 mb-3">
         <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
