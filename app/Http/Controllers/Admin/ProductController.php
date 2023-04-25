@@ -75,26 +75,37 @@ class ProductController extends Controller
 
 
     private function addCategory($category){
-        $category_class= new CategoryToProduct;
-        $category_class->category_name=$category;
-        $category_class->save();
 
-
-
-        return $category_class->id;
+        $find_category=DB::table('category_to_product')->where('category_name',$category)->get()->first();
+        if($find_category){
+            $category_id=$find_category->id;
+        }else{
+            $category_class= new CategoryToProduct;
+            $category_class->category_name=$category;
+            $category_class->save();
+            $category_id=$category_class->id;
+        }
+        return $category_id;
     }
 
     private function addImage($request){
+        $file_name = $request->file('image')->getClientOriginalName();//получаю имя картинки
+        $find_image=DB::table('image')->where('name',$file_name)->get()->first();
+        if($find_image){
+            $image_id=$find_image->id;
+        }else{
 
             $file= $request->file('image')->store('product','public_img');
-            $file_name = $request->file('image')->getClientOriginalName();//получаю имя картинки
 
             $image_class= new Image;
             $image_class->path=$file;
             $image_class->name=$file_name;
             $image_class->save();
+            $image_id=$image_class->id;
 
-            return $image_class->id;
+        }
+
+            return $image_id;
 
     }
 
