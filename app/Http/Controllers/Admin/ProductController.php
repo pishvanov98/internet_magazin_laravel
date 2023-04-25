@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\InitProductController;
 use App\Models\CategoryToProduct;
 use App\Models\Image;
 use App\Models\product;
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function index(){
-        return view('admin.product');
+
+        $initProd=new InitProductController;
+        $product=$initProd->InitProdAll();
+        return view('admin.product',compact('product'));
     }
 
     public function create(){
