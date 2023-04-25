@@ -1,6 +1,17 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container mt-3 mb-3">
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
