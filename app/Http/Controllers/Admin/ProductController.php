@@ -132,13 +132,76 @@ private function checkIsetProduct($name){
 public function edit($request){
 
     $initProd=new InitProductController;
-    $products=$initProd->InitProdAll([1,2,3,4]);
-    var_dump($products);
+    $product=$initProd->InitProdAll($request);
+    $product=$product[0];
 
-
-      return view('admin.product-edit');
+    return view('admin.product-edit', compact('product'));
 
 }
 
+public function update(Request $request){
+
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|max:191',
+        'category_name' => 'required',
+        'articul' => 'required',
+        'brand' => 'required',
+        'quantity' => 'required',
+        'status' => 'required',
+        'price' => 'required',
+        'description' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('admin/product')
+            ->withErrors($validator)
+            ->withInput();
+    }else{
+        $mass_request=$request->all();
+        $category_id= $this->addCategory($mass_request['category_name']);
+        $image_id=false;
+        if(!empty($request->file('image'))){
+            $image_id= $this->addImage($request);
+        }
+        $date= Carbon::now();
+        if($image_id === false){
+            $mass_product=[
+                'name' => $mass_request['name'],
+                'category_id' => $category_id,
+                'articul' => $mass_request['articul'],
+                'brand' => $mass_request['brand'],
+                'quantity' => (int)$mass_request['quantity'],
+                'status' => (int)$mass_request['status'],
+                'price' => (int)$mass_request['price'],
+                'description' => $mass_request['description'],
+                'created_at' => $date->toDateTimeString(),
+                'updated_at' => $date->toDateTimeString()
+            ];
+        }else{
+            $mass_product=[
+                'name' => $mass_request['name'],
+                'category_id' => $category_id,
+                'articul' => $mass_request['articul'],
+                'brand' => $mass_request['brand'],
+                'quantity' => (int)$mass_request['quantity'],
+                'status' => (int)$mass_request['status'],
+                'price' => (int)$mass_request['price'],
+                'description' => $mass_request['description'],
+                'image_id' => $image_id,
+                'created_at' => $date->toDateTimeString(),
+                'updated_at' => $date->toDateTimeString()
+            ];
+        }
+        $id=$request->route('prod');
+        $this->updateProduct($mass_product,$id);
+        return redirect()->route('admin.product');
+
+    }
+
+}
+
+private function updateProduct($data,$id){
+        DB::table('product')->where('id',$id)->update($data);//получили по id данные колонки
+}
 
 }
