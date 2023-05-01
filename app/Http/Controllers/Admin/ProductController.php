@@ -73,7 +73,7 @@ class ProductController extends Controller
         ];
 
     $this->addProduct($mass_product);
-
+    return redirect()->route('admin.product');
         }
     }
 
@@ -117,6 +117,7 @@ class ProductController extends Controller
     private function addProduct($product){
 
         $check_prod=DB::table('product')->insert([$product]);
+
 }
 
 private function checkIsetProduct($name){
@@ -126,4 +127,18 @@ private function checkIsetProduct($name){
         return $check_prod;
 
 }
+
+
+public function edit($request){
+
+    $initProd=new InitProductController;
+    $products=$initProd->InitProdAll([1,2,3,4]);
+    var_dump($products);
+
+
+      return view('admin.product-edit');
+
+}
+
+
 }

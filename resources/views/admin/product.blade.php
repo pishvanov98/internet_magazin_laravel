@@ -22,7 +22,7 @@
                        <th scope="row"> {{$item['id']}}</th>
                        <td>{{$item['name']}}</td>
                        <td>{{$item['category_name']}}</td>
-                       <td>Изменить</td>
+                        <td><a href="{{ route('admin.product.edit', $item['id']) }}">Изменить</a></td>
                     </tr>
                 @endforeach
 
