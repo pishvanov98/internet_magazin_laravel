@@ -14,6 +14,7 @@
 
         <form action="{{ route('admin.product.update',$product['id']) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
             <div class="mb-3">
                 <label for="exampleFormControlInputName" class="form-label">Наименование товара</label>
                 <input type="name" name="name" value="{{$product['name']}}" class="form-control" id="exampleFormControlInputName" placeholder="">

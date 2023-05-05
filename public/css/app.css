@@ -10937,13 +10937,22 @@ footer .wrapper_item ul li a {
   display: block;
   text-align: end;
 }
-.wrapper_goods .goods img {
+.wrapper_goods .goods .wrapper_img {
   height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.wrapper_goods .goods .wrapper_img img {
+  width: 170px;
 }
 .wrapper_goods .goods .price {
   font-size: 18px;
   display: block;
   margin-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 .wrapper_goods .goods .title {
   font-size: 14px;
@@ -10951,6 +10960,24 @@ footer .wrapper_item ul li a {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: #222;
+  line-height: 18px;
+}
+.wrapper_goods .goods .btn_add_to_cart {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn_default {
+  margin: 0;
+  background-color: #b4b7cd;
+  border-radius: 7px;
+  border: solid transparent;
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  font-size: 16px;
+  justify-content: space-around;
 }
 
 @media (max-width: 990px) {

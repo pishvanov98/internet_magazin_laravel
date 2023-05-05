@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\InitProductController;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $initProd=new InitProductController();
+        $products=$initProd->InitProdAll(false, 20);
+
+        return view('home', compact('products'));
     }
 }

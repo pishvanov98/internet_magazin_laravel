@@ -11,9 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class InitProductController extends Controller
 {
-    public function InitProdAll($id = false){
+    public function InitProdAll($id = false,$limit= false){
         if($id === false) {
-            $product = product::all();
+            if($limit !== false){
+                $product = product::orderBy('updated_at', 'DESC')->limit($limit)->get();
+            }else{
+                $product = product::orderBy('updated_at', 'DESC')->get();
+            }
             $category = CategoryToProduct::all('id', 'category_name')->toArray();
             $image = Image::all('id', 'name', 'path')->toArray();
             $products = array();

@@ -119,13 +119,22 @@ footer{
             display: block;
             text-align: end;
         }
-        img{
+        .wrapper_img{
             height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            img{
+                width: 170px;
+            }
         }
         .price{
             font-size: 18px;
             display: block;
             margin-top: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
         .title{
             font-size: 14px;
@@ -133,10 +142,29 @@ footer{
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            color: #222;
+            line-height: 18px;
+
+        }
+        .btn_add_to_cart{
+            width: 100%;
+            margin-top: 10px;
         }
     }
 }
 
+.btn_default{
+
+    margin: 0;
+    background-color: #b4b7cd;
+    border-radius: 7px;
+    border: solid transparent;
+    cursor: pointer;
+    display: flex;
+    font-weight: 600;
+    font-size: 16px;
+    justify-content: space-around;
+}
 
 @media (max-width: 990px) {
    .wrapper_goods .goods{
