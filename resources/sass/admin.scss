@@ -7,5 +7,15 @@
         margin: 10px;
     }
 }
+    .table{
+        a{
+            text-decoration: none;
+        }
+        .del_prod{
+            background: none;
+            border: none;
+            color: var(--bs-link-hover-color);
+        }
+    }
 
 }

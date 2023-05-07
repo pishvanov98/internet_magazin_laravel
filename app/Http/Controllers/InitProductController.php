@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategoryToProduct;
-use App\Models\Image;
+use App\Models\ImageProduct;
 use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +19,7 @@ class InitProductController extends Controller
                 $product = product::orderBy('updated_at', 'DESC')->get();
             }
             $category = CategoryToProduct::all('id', 'category_name')->toArray();
-            $image = Image::all('id', 'name', 'path')->toArray();
+            $image = ImageProduct::all('id', 'name', 'path')->toArray();
             $products = array();
             $products = $this->getArrProd($product, $category, $image, $products);
         }else{
@@ -27,7 +27,7 @@ class InitProductController extends Controller
             if(is_array($id)){
                  $product = DB::table('product')->whereIn('id', $id)->get();
                  $category = CategoryToProduct::all('id', 'category_name')->toArray();
-                 $image = Image::all('id', 'name', 'path')->toArray();
+                 $image = ImageProduct::all('id', 'name', 'path')->toArray();
                  $products = $this->getArrProd($product, $category, $image, $products);
             }else{
                  $product = DB::table('product')->find($id);

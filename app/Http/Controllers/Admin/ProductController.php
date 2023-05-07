@@ -1,17 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Intervention\Image\Facades\Image;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\InitProductController;
 use App\Models\CategoryToProduct;
-use App\Models\Image;
+use App\Models\ImageProduct;
 use App\Models\product;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller
 {
@@ -100,8 +101,8 @@ class ProductController extends Controller
         }else{
 
             $file= $request->file('image')->store('product','public_img');
-
-            $image_class= new Image;
+            Image::make($request->file('image')->getRealPath())->resize(170, 140)->save('img/resize/'.$file);//создаем миниатюру картинки
+            $image_class= new ImageProduct;
             $image_class->path=$file;
             $image_class->name=$file_name;
             $image_class->save();
@@ -202,6 +203,13 @@ public function update(Request $request){
 
 private function updateProduct($data,$id){
         DB::table('product')->where('id',$id)->update($data);//получили по id данные колонки
+}
+
+public function destroy(Request $request){
+
+        $product=product::find($request->route('prod'));
+        $product->delete();
+        return redirect('admin/product');
 }
 
 }

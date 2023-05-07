@@ -10827,6 +10827,14 @@ textarea.form-control-lg {
 #app_admin .wrapper_button_prod button {
   margin: 10px;
 }
+#app_admin .table a {
+  text-decoration: none;
+}
+#app_admin .table .del_prod {
+  background: none;
+  border: none;
+  color: var(--bs-link-hover-color);
+}
 
 body {
   background-color: white;

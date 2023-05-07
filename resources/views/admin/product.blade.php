@@ -22,7 +22,13 @@
                        <th scope="row"> {{$item['id']}}</th>
                        <td>{{$item['name']}}</td>
                        <td>{{$item['category_name']}}</td>
-                        <td><a href="{{ route('admin.product.edit', $item['id']) }}">Изменить</a></td>
+                        <td>
+                            <a href="{{ route('admin.product.edit', $item['id']) }}">Изменить</a>
+                            <form method="post" action="{{route('admin.product.destroy',$item['id'])}}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" class="del_prod" value="Удалить">
+                            </form>
                     </tr>
                 @endforeach
 
