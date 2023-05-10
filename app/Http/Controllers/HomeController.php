@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
 
         $initProd=new InitProductController();
-        $products=$initProd->InitProdAll(false, 20);
+        $products=$initProd->InitProdAll(false, 14);
 
         return view('home', compact('products'));
     }
