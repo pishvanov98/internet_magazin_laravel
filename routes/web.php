@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
-
+Route::post('/addCart', 'CartController@addToCart')->name('addToCart');
 Route::group(['namespace' => 'Admin', 'middleware' => ['role:admin'], 'prefix'=> 'admin'], function(){//prefix подставляет admin во всё что внутри группы в пути , namespace группа контрорреров в папке Admin middleware дал доступ роли админу
 
     Route::get('', 'AdminController@index')->name('admin');

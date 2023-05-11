@@ -31,7 +31,7 @@
                 <div class="wrapper_img"><img src="{{asset("/img/resize/".$product['image'][1])}}"></div>
                 <span class="price">{{$product['price']}} р</span>
                 <span class="title">{{$product['name']}}</span>
-                <button class="btn_default btn_add_to_cart" type="button"> В корзину </button>
+                <button onclick="AddToCart();"  class="btn_default btn_add_to_cart" type="button"> В корзину </button>
             </div>
 
 
@@ -49,6 +49,26 @@
         slidesToShow: 1,
         slidesToScroll: 1
     });
+
+    function AddToCart(){
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: '{{route('addToCart')}}',
+            method:'post',
+            dataType:'json',
+            data:{test:'111'},
+            success:function (data){
+                alert('2');
+            }
+        });
+
+    }
 
 </script>
 @endsection
