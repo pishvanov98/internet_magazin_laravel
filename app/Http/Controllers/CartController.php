@@ -7,6 +7,15 @@ use App\Http\Controllers\InitProductController;
 
 class CartController extends Controller
 {
+
+    public function index(Request $request){
+        $count_cart= $this::updateCountCartHeader($request);
+
+        $products=$this->getProductToId($request);
+
+        return view('cart',compact('count_cart','products'));
+    }
+
     public function addToCart(Request $request){
     if($request->id_prod && $request->quantity){
         $product[]=array(
@@ -43,6 +52,31 @@ class CartController extends Controller
             return $count;
         }
 
+    }
+    public function getProductToId($request){
+
+        if($request->session()->has('cart')){
+
+            $initProd= new InitProductController();
+
+            $cart_prod= $request->session()->get('cart');
+            $prod_mass=[];
+            foreach ($cart_prod as $item){
+               $product= $initProd->InitProdAll($item['id_prod']);
+                $prod_mass[]=[
+                    'id'=>$product[0]['id'],
+                    'name'=>$product[0]['name'],
+                    'articul'=>$product[0]['articul'],
+                    'brand'=>$product[0]['brand'],
+                    'quantity'=>$product[0]['quantity'],
+                    'status'=>$product[0]['status'],
+                    'price'=>$product[0]['price'],
+                    'image'=>$product[0]['image'],
+                    'countToCart'=>$item['quantity'],
+                ];
+            }
+            return $prod_mass;
+        }
     }
 
 }
