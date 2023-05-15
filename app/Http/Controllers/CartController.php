@@ -25,11 +25,24 @@ class CartController extends Controller
                 $cart_prod[]=$product[0];
                 $request->session()->put('cart', $cart_prod);
             }
-            return response()->json(['ok'=>$cart_prod]);
-            //$request->session()->forget('cart');
+            //$request->session()->forget('cart');//удалить из сессии
+            return response()->json(['count'=>$this::updateCountCartHeader($request)]);
+
         }
     }
-
-        return ' 22 ';
     }
+
+    public static function updateCountCartHeader($request){
+
+        if($request->session()->has('cart')){
+            $cart_prod= $request->session()->get('cart');
+            $count=0;
+            foreach ($cart_prod as $item){
+                $count= $count +  $item['quantity'];
+            }
+            return $count;
+        }
+
+    }
+
 }

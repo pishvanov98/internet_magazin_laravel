@@ -64,7 +64,10 @@
             dataType:'json',
             data:{id_prod:id_prod,quantity:'1'},
             success:function (data){
-            console.log(data);
+
+                if(data['count']){
+                    $('#count_cart1').text(data['count']);
+                }
             }
         });
 

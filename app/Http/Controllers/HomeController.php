@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\InitProductController;
+use App\Http\Controllers\CartController;
 
 class HomeController extends Controller
 {
@@ -22,12 +23,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+
+       $count_cart= CartController::updateCountCartHeader($request);
 
         $initProd=new InitProductController();
         $products=$initProd->InitProdAll(false, 14);
 
-        return view('home', compact('products'));
+        return view('home', compact('products','count_cart'));
     }
 }
