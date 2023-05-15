@@ -1,7 +1,16 @@
 @extends('layouts.app')
 @section('content')
-    <div><h1>Корзина</h1><span>3 товара</span></div>
-    <div><input type="checkbox" id="cheese"><label for="cheese">Выбрать все</label>  <span>Удалить</span></div>
+    <div class="container">
+    <div class="title_cart"><h1>Корзина</h1><span class="small" >3 товара</span></div>
+        <div class="wrapper_top_item_cart"><div class="input_block"><input type="checkbox" id="all"><label for="all">Выбрать все</label></div>
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                      <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                </svg>
+                Удалить
+            </span>
+        </div>
 
     <div class="cart_item">
         <input type="checkbox" id="cheese">
@@ -33,7 +42,7 @@
             <button>+</button>
         </div>
     </div>
-
+    </div>
     @if($products)
 
         @foreach($products as $product)
