@@ -35,9 +35,8 @@ class CartController extends Controller
                 $request->session()->put('cart', $cart_prod);
             }
             //$request->session()->forget('cart');//удалить из сессии
-            return response()->json(['count'=>$this::updateCountCartHeader($request)]);
-
         }
+        return response()->json(['count'=>$this::updateCountCartHeader($request)]);
     }
     }
 
@@ -50,6 +49,8 @@ class CartController extends Controller
                 $count= $count +  $item['quantity'];
             }
             return $count;
+        }else{
+            return 0;
         }
 
     }
@@ -76,6 +77,8 @@ class CartController extends Controller
                 ];
             }
             return $prod_mass;
+        }else{
+            return false;
         }
     }
 
