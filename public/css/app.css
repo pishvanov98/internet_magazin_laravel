@@ -11029,6 +11029,8 @@ footer .wrapper_item ul li a {
 .cart_item {
   display: flex;
   flex-direction: row;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ececec;
 }
 .cart_item input {
   height: 20px;
@@ -11048,6 +11050,12 @@ footer .wrapper_item ul li a {
 }
 .cart_item .column_cart_item p:nth-of-type(1) {
   font-weight: 600;
+}
+.cart_item .column_cart_item .count_cart_item button, .cart_item .column_cart_item .count_cart_item input {
+  text-align: center;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .title_cart {
@@ -11078,6 +11086,10 @@ footer .wrapper_item ul li a {
 .wrapper_top_item_cart .input_block input {
   height: 20px;
   width: 20px;
+}
+
+.left_panel_cart {
+  width: 70%;
 }
 
 @media (max-width: 990px) {

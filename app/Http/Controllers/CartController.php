@@ -9,6 +9,7 @@ class CartController extends Controller
 {
 
     public function index(Request $request){
+        //$request->session()->forget('cart');//удалить из сессии
         $count_cart= $this::updateCountCartHeader($request);
 
         $products=$this->getProductToId($request);

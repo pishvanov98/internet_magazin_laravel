@@ -206,6 +206,8 @@ footer{
 .cart_item{
     display: flex;
     flex-direction: row;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ececec;
     input{
         height: 20px;
         width: 20px;
@@ -223,6 +225,14 @@ footer{
         }
         p:nth-of-type(1){
             font-weight: 600;
+        }
+        .count_cart_item{
+            button, input{
+                text-align: center;
+                background: none;
+                border: none;
+                outline:none;
+            }
         }
     }
 }
@@ -253,6 +263,10 @@ footer{
             width: 20px;
         }
     }
+}
+
+.left_panel_cart{
+    width: 70%;
 }
 
 @media (max-width: 990px) {
