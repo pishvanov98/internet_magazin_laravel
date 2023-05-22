@@ -206,9 +206,10 @@ footer{
 .cart_item{
     display: flex;
     flex-direction: row;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     border-bottom: 1px solid #ececec;
-    input{
+    .check_cart_item{
         height: 20px;
         width: 20px;
         margin-right: 10px;
@@ -227,6 +228,9 @@ footer{
             font-weight: 600;
         }
         .count_cart_item{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
             button, input{
                 text-align: center;
                 background: none;

@@ -41,6 +41,11 @@ class CartController extends Controller
     }
     }
 
+
+    public function delToCart(Request $request){
+
+    }
+
     public static function updateCountCartHeader($request){
 
         if($request->session()->has('cart')){

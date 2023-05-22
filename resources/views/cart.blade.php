@@ -19,7 +19,7 @@
                 @foreach($products as $product)
 
                     <div class="cart_item item{{$product['id']}}">
-                        <input type="checkbox" id="cheese">
+                        <input class="check_cart_item" type="checkbox" >
                         <img src="{{asset("/img/resize/".$product['image'][1])}}">
                         <div class="column_cart_item" style="width: 50%;">
                             <div>
@@ -47,7 +47,7 @@
                             <p>{{$product['price']}}</p>
                             <div class="count_cart_item">
                                 <button class="minus" data-id="{{$product['id']}}">-</button>
-                                <input  type="number" data-id="{{$product['id']}}"  class="countToCart" value="{{$product['countToCart']}}" min="0" max="99" />
+                                <input  type="number" readonly data-id="{{$product['id']}}"  class="countToCart" value="{{$product['countToCart']}}" min="0" max="99" />
                                 <button class="plus"  data-id="{{$product['id']}}" >+</button>
                             </div>
                         </div>
@@ -66,14 +66,73 @@
 
 
 $(".minus").on('click',function (){
-
    var id=$(this).data("id");
    var value=$(".item"+id+" .countToCart").attr("value");
-   value= value - 1;
-
+   if(value >= 1){
+       value--;
+   }
    $(".item"+id+" .countToCart").attr("value", value);
+    DelToCart(id);
+});
+
+$(".plus").on('click',function (){
+    var id=$(this).data("id");
+    var value=$(".item"+id+" .countToCart").attr("value");
+    if(value < 100){
+        value++;
+    }
+    $(".item"+id+" .countToCart").attr("value", value);
+
+    AddToCart(id);
 
 });
+
+
+
+
+function AddToCart(id_prod){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: '{{route('addToCart')}}',
+        method:'post',
+        dataType:'json',
+        data:{id_prod:id_prod,quantity:'1'},
+        success:function (data){
+
+            if(data['count']){
+                $('#count_cart1').text(data['count']);
+            }
+        }
+    });
+}
+
+function DelToCart(id_prod){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: '{{route('delToCart')}}',
+        method:'post',
+        dataType:'json',
+        data:{id_prod:id_prod,quantity:'1'},
+        success:function (data){
+
+            if(data['count']){
+                $('#count_cart1').text(data['count']);
+            }
+        }
+    });
+}
 
 
 
