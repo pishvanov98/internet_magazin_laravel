@@ -43,7 +43,19 @@ class CartController extends Controller
 
 
     public function delToCart(Request $request){
+        if($request->id_prod && $request->quantity && $request->session()->has('cart')){
+            $cart_prod= $request->session()->get('cart');
+            $index=array_search($request->id_prod, array_column($cart_prod, 'id_prod'));
 
+            $cart_prod[$index]['quantity'] = $cart_prod[$index]['quantity'] - $request->quantity;
+            $del_prod=false;
+            if($cart_prod[$index]['quantity'] <= 0){
+               $del_prod=$request->id_prod;
+                unset($cart_prod[$index]);
+            }
+            $request->session()->put('cart', $cart_prod);
+            return response()->json(['count'=>$this::updateCountCartHeader($request),'del_prod'=>$del_prod]);
+        }
     }
 
     public static function updateCountCartHeader($request){

@@ -125,10 +125,13 @@ function DelToCart(id_prod){
         method:'post',
         dataType:'json',
         data:{id_prod:id_prod,quantity:'1'},
-        success:function (data){
+        success:function (data){ //del_prod
 
             if(data['count']){
                 $('#count_cart1').text(data['count']);
+            }
+            if(data['del_prod'] !== false){
+                console.log(data['del_prod']);
             }
         }
     });
