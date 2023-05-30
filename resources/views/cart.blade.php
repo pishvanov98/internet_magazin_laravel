@@ -129,9 +129,11 @@ function DelToCart(id_prod){
 
             if(data['count']){
                 $('#count_cart1').text(data['count']);
+            }else{
+                $('#count_cart1').text(0);
             }
             if(data['del_prod'] !== false){
-                console.log(data['del_prod']);
+                $(".item"+data['del_prod']).empty();
             }
         }
     });

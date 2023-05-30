@@ -27,8 +27,10 @@ class CartController extends Controller
             $request->session()->put('cart', $product);
         }else{
             $cart_prod= $request->session()->get('cart');
+
             $index=array_search($request->id_prod, array_column($cart_prod, 'id_prod'));
             if($index !== false){//если индекс есть то изменяем
+
                 $cart_prod[$index]['quantity'] = $cart_prod[$index]['quantity'] + $request->quantity;
                 $request->session()->put('cart', $cart_prod);
             }else{//нет то добавляем товар
@@ -53,7 +55,7 @@ class CartController extends Controller
                $del_prod=$request->id_prod;
                 unset($cart_prod[$index]);
             }
-            $request->session()->put('cart', $cart_prod);
+            $request->session()->put('cart', array_values($cart_prod));
             return response()->json(['count'=>$this::updateCountCartHeader($request),'del_prod'=>$del_prod]);
         }
     }
@@ -64,7 +66,7 @@ class CartController extends Controller
             $cart_prod= $request->session()->get('cart');
             $count=0;
             foreach ($cart_prod as $item){
-                $count= $count +  $item['quantity'];
+                $count = $count + $item['quantity'];
             }
             return $count;
         }else{
