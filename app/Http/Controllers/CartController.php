@@ -11,10 +11,10 @@ class CartController extends Controller
     public function index(Request $request){
         //$request->session()->forget('cart');//удалить из сессии
         $count_cart= $this::updateCountCartHeader($request);
-
         $products=$this->getProductToId($request);
+        $total_price=$this->updateTotalPriceCart($request);
 
-        return view('cart',compact('count_cart','products'));
+        return view('cart',compact('count_cart','products','total_price'));
     }
 
     public function addToCart(Request $request){
@@ -39,7 +39,7 @@ class CartController extends Controller
             }
             //$request->session()->forget('cart');//удалить из сессии
         }
-        return response()->json(['count'=>$this::updateCountCartHeader($request)]);
+        return response()->json(['count'=>$this::updateCountCartHeader($request),'total_price'=>$this->updateTotalPriceCart($request)]);
     }
     }
 
@@ -56,7 +56,7 @@ class CartController extends Controller
                 unset($cart_prod[$index]);
             }
             $request->session()->put('cart', array_values($cart_prod));
-            return response()->json(['count'=>$this::updateCountCartHeader($request),'del_prod'=>$del_prod]);
+            return response()->json(['count'=>$this::updateCountCartHeader($request),'del_prod'=>$del_prod,'total_price'=>$this->updateTotalPriceCart($request)]);
         }
     }
 
@@ -74,6 +74,18 @@ class CartController extends Controller
         }
 
     }
+
+    public function updateTotalPriceCart($request){
+        $products=$this->getProductToId($request);
+$price=0;
+        if(!empty($products)){
+            foreach ($products as $val){
+                $price=$price+($val['price'] * $val['countToCart']);
+            }
+        }
+        return number_format($price, 0, '', ' ');
+    }
+
     public function getProductToId($request){
 
         if($request->session()->has('cart')){
