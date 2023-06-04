@@ -59,7 +59,7 @@
 
         </div>
         <div class="right_panel_cart">
-            <a class="btn_default" href="#">Перейти к оформлению</a>
+            <a class="btn_default" href="{{route('order')}}">Перейти к оформлению</a>
             <div class="block_total">
                 <p>Всего <span class="count_all_cart">{{$count_cart}} товара</span></p>
             <p class="total_price_cart" style="margin: 0;font-weight: 600;">Итого  {{$total_price}} р.</p>
